@@ -1,6 +1,16 @@
 import numpy as np
 
-WEIGHTS = np.array([0.1, 0.2, 0])
+ih_wgt = np.array([
+    [0.1, 0.2, -0.1],
+    [-0.1, 0.1, 0.9],
+    [0.1, 0.4, 0.1]]).T
+
+hp_wgt = np.array([
+    [0.3, 1.1, -0.3],
+    [0.1, 0.2, 0.0],
+    [0.0, 1.3, 0.1]]).T
+
+WEIGHTS = [ih_wgt, hp_wgt]
 
 
 def neural_network(inp, weights):
@@ -12,7 +22,8 @@ def neural_network(inp, weights):
 
     """
 
-    prediction = inp.dot(weights)
+    hid = inp.dot(weights[0])
+    prediction = hid.dot(weights[1])
     return prediction
 
 
